@@ -1,0 +1,55 @@
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 60px;
+    padding: 20px;
+    font-weight: bolder;
+    font-family: cursive;
+}
+
+.grid{
+    display: grid;
+    width: 560px;
+    height: 560px;
+
+    padding-left: 200px;
+    padding-top: 30px;
+}
+
+.container{
+    display: flex;
+    border: 1px solid red;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 100px;
+    margin-left: 200px;
+    border: 1px solid green;
+}
+
+.color,
+.eraser,
+.clear {
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: cursive;
+    border: 3px solid black;  
+    padding: 10px; 
+    border-radius: 10px;
+    color: black;
+    
+}
+
+.color:hover,
+.eraser:hover,
+.clear:hover {
+    transform: scale(1.05);
+}
+
+
+.grid-element{
+    border: 1px black solid; 
+}
