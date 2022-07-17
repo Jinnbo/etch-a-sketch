@@ -14,4 +14,4 @@ for (let i = 0; i < 16*16; i++) {
 
     gridElement.classList.add('grid-element')
     grid.appendChild(gridElement)
-  }
+}
