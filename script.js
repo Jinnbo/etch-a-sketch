@@ -25,8 +25,8 @@ eraser.addEventListener("click", erase);
 
 
 let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
+window.onmousedown = () => mouseDown = true;
+window.onmouseup = () => mouseDown = false;
 
 function setGrid(size){
 
@@ -70,6 +70,9 @@ function erase(){
 
     eraseOn = !eraseOn;
 
+    if (eraseOn && rainbowOn) rainbowMode();
+    if (eraseOn && colorOn) colorMode();
+
     if (eraseOn){
         color = "white";
         eraser.classList.add('active');
@@ -85,9 +88,8 @@ function rainbowMode(){
 
     rainbowOn = !rainbowOn;
 
-    if (rainbowOn && colorOn){
-        colorMode();
-    }
+    if (rainbowOn && colorOn) colorMode();
+    if (rainbowOn && eraseOn) erase();
 
     if (rainbowOn){
         mode = 'rainbow';
@@ -104,9 +106,9 @@ function colorMode(){
 
     colorOn = !colorOn;
 
-    if (rainbowOn && colorOn){
-        rainbowMode();
-    }
+    if (rainbowOn && colorOn) rainbowMode();
+    if (eraseOn && colorOn) erase();
+    
 
     if (colorOn){
         colorActive.classList.add('active');
