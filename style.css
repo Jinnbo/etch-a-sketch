@@ -57,9 +57,14 @@
     background-color: rgb(229, 226, 222);
 }
 
-.eraser.active{
+
+.eraser.active,
+.rainbow.active,
+.color.active{
     background-color: rgb(229, 226, 222);
 }
+
+
 
 
 .grid-element{

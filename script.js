@@ -1,14 +1,24 @@
 // Initial Variables
 let size = 16;
 let color = "black";
+let mode = 'color';
 
 // Variables
 const grid = document.getElementById('grid');
+const colorActive = document.getElementById('color');
 const clear = document.getElementById('clear');
 const eraser = document.getElementById('eraser');
+const rainbow = document.getElementById('rainbow');
 
 // Event Listeners
+
 clear.addEventListener("click", resetGrid);
+
+let rainbowOn = false;
+rainbow.addEventListener("click", rainbowMode );
+
+let colorOn = true;
+colorActive.addEventListener("click", colorMode );
 
 let eraseOn = false;
 eraser.addEventListener("click", erase);
@@ -36,8 +46,18 @@ function setGrid(size){
 function changeColor(e){
 
     if (e.type === 'mouseover' && !mouseDown) return;
+   
+    if (mode == 'color'){
+        e.target.style.backgroundColor = color;
+    }
+    else if (mode == 'rainbow') {
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
 
-    e.target.style.backgroundColor = color;
+        e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
+    }
+
     
 }
 
@@ -59,11 +79,42 @@ function erase(){
         eraser.classList.remove('active');
     } 
 
+}
 
-    console.log(eraseOn);
+function rainbowMode(){
+
+    rainbowOn = !rainbowOn;
+
+    if (rainbowOn && colorOn){
+        colorMode();
+    }
+
+    if (rainbowOn){
+        mode = 'rainbow';
+        rainbow.classList.add('active');
+    }
+    else{
+        mode = 'color';
+        rainbow.classList.remove('active'); 
+    }
 
 }
 
+function colorMode(){
 
+    colorOn = !colorOn;
+
+    if (rainbowOn && colorOn){
+        rainbowMode();
+    }
+
+    if (colorOn){
+        colorActive.classList.add('active');
+    }
+    else{
+        colorActive.classList.remove('active');
+    }
+
+}
 
 setGrid(size);
