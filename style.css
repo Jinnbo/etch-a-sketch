@@ -1,3 +1,4 @@
+
 .title{
     display: flex;
     justify-content: center;
@@ -24,9 +25,10 @@
 .menu{
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    padding: 50px;
+    gap: 54px;
+    padding-top: 20px;
     margin-left: 200px;
+
 
 }
 
@@ -42,6 +44,7 @@
     padding: 10px; 
     border-radius: 10px;
     color: black;
+    background-color: white;
     
 }
 
@@ -51,6 +54,11 @@
 .clear:hover,
 .size:hover {
     transform: scale(1.05);
+    background-color: rgb(229, 226, 222);
+}
+
+.eraser.active{
+    background-color: rgb(229, 226, 222);
 }
 
 
