@@ -1,7 +1,12 @@
+// Constant Variables
+const INITIAL_SIZE = 16;
+const INITIAL_COLOR = "black";
+const INITIAL_MODE = "color";
+
 // Initial Variables
-let size = 16;
-let color = "black";
-let mode = 'color';
+let size = INITIAL_SIZE;
+let color = INITIAL_COLOR;
+let mode = INITIAL_MODE;
 
 // Variables
 const grid = document.getElementById('grid');
@@ -11,22 +16,30 @@ const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
 
 // Event Listeners
+let colorOn = false;
+colorActive.addEventListener("click", colorMode );
 
 clear.addEventListener("click", resetGrid);
 
 let rainbowOn = false;
 rainbow.addEventListener("click", rainbowMode );
 
-let colorOn = true;
-colorActive.addEventListener("click", colorMode );
-
 let eraseOn = false;
 eraser.addEventListener("click", erase);
 
-
+// Check for mousedown
 let mouseDown = false;
 window.onmousedown = () => mouseDown = true;
 window.onmouseup = () => mouseDown = false;
+
+// Initalize webpage
+function initAll(){
+    colorOn = false;
+    colorActive.classList.add('active');
+    colorMode();
+    setGrid(size);
+}
+
 
 function setGrid(size){
 
@@ -109,14 +122,25 @@ function colorMode(){
     if (rainbowOn && colorOn) rainbowMode();
     if (eraseOn && colorOn) erase();
     
-
+    
     if (colorOn){
         colorActive.classList.add('active');
     }
     else{
         colorActive.classList.remove('active');
     }
+    
 
 }
 
-setGrid(size);
+initAll();
+
+/*
+TODO:
+- Add icon for website url
+- Let user pick color from color button
+    - Color wheel with rgb
+- Let user pick size from size button
+    - size from size 16 to 64
+
+*/
