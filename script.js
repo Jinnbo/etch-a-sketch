@@ -11,9 +11,12 @@ let mode = INITIAL_MODE;
 // Variables
 const grid = document.getElementById('grid');
 const colorActive = document.getElementById('color');
+const colorContainer = document.getElementById('colorcontainer');
 const clear = document.getElementById('clear');
 const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
+var slider = document.getElementById('slider');
+var output = document.getElementById('dimension');
 
 // Event Listeners
 let colorOn = false;
@@ -35,7 +38,7 @@ window.onmouseup = () => mouseDown = false;
 // Initalize webpage
 function initAll(){
     colorOn = false;
-    colorActive.classList.add('active');
+    colorContainer.classList.add('active');
     colorMode();
     setGrid(size);
 }
@@ -74,11 +77,13 @@ function changeColor(e){
     
 }
 
+// 
 function resetGrid(){
     grid.innerHTML = '';
     setGrid(size);
 }
 
+// Erase button
 function erase(){
 
     eraseOn = !eraseOn;
@@ -93,10 +98,12 @@ function erase(){
     else{
         color = "black";
         eraser.classList.remove('active');
+        colorMode();
     } 
 
 }
 
+// Rainbow button
 function rainbowMode(){
 
     rainbowOn = !rainbowOn;
@@ -115,6 +122,7 @@ function rainbowMode(){
 
 }
 
+// Color button
 function colorMode(){
 
     colorOn = !colorOn;
@@ -124,14 +132,23 @@ function colorMode(){
     
     
     if (colorOn){
-        colorActive.classList.add('active');
+        colorContainer.classList.add('active');
     }
     else{
-        colorActive.classList.remove('active');
+        colorContainer.classList.remove('active');
     }
-    
-
 }
+
+// Update size variable
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+    size = this.value;
+    output.innerHTML = this.value;
+    resetGrid(size);
+}
+
+
 
 initAll();
 
@@ -140,7 +157,7 @@ TODO:
 - Add icon for website url
 - Let user pick color from color button
     - Color wheel with rgb
-- Let user pick size from size button
-    - size from size 16 to 64
+- Fix positioning of everything
+    - center it
 
 */

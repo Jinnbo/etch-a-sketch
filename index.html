@@ -14,11 +14,21 @@
     <div class="container">
 
         <div class="menu"> 
-            <button class="color" id="color">COLOR</button>
+            
+            <div class="colorcontainer" id="colorcontainer">
+                <div class="color" id="color">COLOR:</div>
+                <input type="color" id="colorpicker" class="colorpicker" value="#000000">
+            </div>
+
             <button class="rainbow" id="rainbow">RAINBOW</button>
             <button class="eraser" id="eraser">ERASER</button>
             <button class="clear" id="clear">CLEAR</button>
-            <button class="size">SIZE</button>
+
+            <div class="slidercontainer">
+                <div class="size">SIZE: <span id="dimension"></span></div>
+                <input type="range" min="16" max="64" value="16" class="slider" id="slider">
+            </div>
+
         </div>
         
         <div class="grid" id="grid"></div>

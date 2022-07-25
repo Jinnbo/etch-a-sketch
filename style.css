@@ -19,7 +19,6 @@
 
 .container{
     display: flex;
-
 }
 
 .menu{
@@ -28,11 +27,24 @@
     gap: 54px;
     padding-top: 20px;
     margin-left: 200px;
-
-
 }
 
-.color,
+.colorcontainer{
+    display: flex;
+    gap: 5px;
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: cursive;
+    border: 3px solid black;  
+    padding: 10px; 
+    border-radius: 10px;
+    color: black;
+}
+
+.colorpicker{
+    margin-top: 8px;
+}
+
 .rainbow,
 .eraser,
 .clear,
@@ -45,14 +57,12 @@
     border-radius: 10px;
     color: black;
     background-color: white;
-    
 }
 
-.color:hover,
+
 .rainbow:hover,
 .eraser:hover,
-.clear:hover,
-.size:hover {
+.clear:hover {
     transform: scale(1.05);
     background-color: rgb(229, 226, 222);
 }
@@ -60,12 +70,9 @@
 
 .eraser.active,
 .rainbow.active,
-.color.active{
+.colorcontainer.active{
     background-color: rgb(229, 226, 222);
 }
-
-
-
 
 .grid-element{
     border: 1px black solid; 
@@ -88,5 +95,30 @@
 
 .logo:hover{
     transform: scale(1.1);
+}
+
+.slidercontainer{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.slider{
+    -webkit-appearance: none;
+    width: 97%;
+    height: 10px;
+    background: rgb(229, 226, 222);
+
+
+}
+
+.slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    width: 10px;
+    cursor: pointer;
+    background: black;
+    border-radius: 2px;
 }
 
