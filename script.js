@@ -12,6 +12,9 @@ let mode = INITIAL_MODE;
 const grid = document.getElementById('grid');
 const colorActive = document.getElementById('color');
 const colorContainer = document.getElementById('colorcontainer');
+const colorpicker = document.getElementById('colorpicker');
+
+
 const clear = document.getElementById('clear');
 const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
@@ -19,9 +22,6 @@ var slider = document.getElementById('slider');
 var output = document.getElementById('dimension');
 
 // Event Listeners
-let colorOn = false;
-colorActive.addEventListener("click", colorMode );
-
 clear.addEventListener("click", resetGrid);
 
 let rainbowOn = false;
@@ -29,6 +29,9 @@ rainbow.addEventListener("click", rainbowMode );
 
 let eraseOn = false;
 eraser.addEventListener("click", erase);
+
+colorpicker.oninput = (e) => setColor(e.target.value);
+
 
 // Check for mousedown
 let mouseDown = false;
@@ -39,7 +42,6 @@ window.onmouseup = () => mouseDown = false;
 function initAll(){
     colorOn = false;
     colorContainer.classList.add('active');
-    colorMode();
     setGrid(size);
 }
 
@@ -89,7 +91,6 @@ function erase(){
     eraseOn = !eraseOn;
 
     if (eraseOn && rainbowOn) rainbowMode();
-    if (eraseOn && colorOn) colorMode();
 
     if (eraseOn){
         color = "white";
@@ -108,7 +109,6 @@ function rainbowMode(){
 
     rainbowOn = !rainbowOn;
 
-    if (rainbowOn && colorOn) colorMode();
     if (rainbowOn && eraseOn) erase();
 
     if (rainbowOn){
@@ -122,22 +122,6 @@ function rainbowMode(){
 
 }
 
-// Color button
-function colorMode(){
-
-    colorOn = !colorOn;
-
-    if (rainbowOn && colorOn) rainbowMode();
-    if (eraseOn && colorOn) erase();
-    
-    
-    if (colorOn){
-        colorContainer.classList.add('active');
-    }
-    else{
-        colorContainer.classList.remove('active');
-    }
-}
 
 // Update size variable
 output.innerHTML = slider.value;
@@ -148,6 +132,10 @@ slider.oninput = function() {
     resetGrid(size);
 }
 
+// Update color variable
+function setColor(e){
+    color = e;
+}
 
 
 initAll();
@@ -159,5 +147,7 @@ TODO:
     - Color wheel with rgb
 - Fix positioning of everything
     - center it
+
+- Make tablet and mobile compatible 
 
 */

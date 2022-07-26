@@ -1,9 +1,8 @@
-
 .title{
     display: flex;
     justify-content: center;
     font-size: 60px;
-    padding: 14px;
+    padding: 12px;
     font-weight: bolder;
     font-family: cursive;
 }
@@ -12,34 +11,25 @@
     display: grid;
     width: 560px;
     height: 560px;
-
     padding-left: 200px;
     padding-top: 20px;
 }
 
 .container{
     display: flex;
+    padding-left: 100px;
+
+
 }
 
 .menu{
     display: flex;
     flex-direction: column;
-    gap: 54px;
+    gap: 40px;
     padding-top: 20px;
     margin-left: 200px;
 }
 
-.colorcontainer{
-    display: flex;
-    gap: 5px;
-    font-size: 30px;
-    font-weight: bolder;
-    font-family: cursive;
-    border: 3px solid black;  
-    padding: 10px; 
-    border-radius: 10px;
-    color: black;
-}
 
 .colorpicker{
     margin-top: 8px;
@@ -47,6 +37,7 @@
 
 .rainbow,
 .eraser,
+
 .clear,
 .size {
     font-size: 30px;
@@ -69,8 +60,7 @@
 
 
 .eraser.active,
-.rainbow.active,
-.colorcontainer.active{
+.rainbow.active {
     background-color: rgb(229, 226, 222);
 }
 
@@ -120,5 +110,35 @@
     cursor: pointer;
     background: black;
     border-radius: 2px;
+}
+
+
+.colorpicker:hover{
+    transform: scale(1.1);
+}
+
+
+.colorcontainer{
+    padding-left: 50px;
+    
+}
+.colorpicker {
+    -webkit-appearance: none;
+    width: 85px;
+    height: 85px;
+    border: none;
+    padding: 0;
+}
+
+.colorpicker::-webkit-color-swatch-wrapper {
+    padding: 0;
+    background-color: white;
+
+}
+
+.colorpicker::-webkit-color-swatch {
+    border: none;
+    border-radius: 50px;
+    background-color: white;
 }
 
