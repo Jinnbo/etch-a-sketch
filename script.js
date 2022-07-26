@@ -13,24 +13,35 @@ const grid = document.getElementById('grid');
 const colorActive = document.getElementById('color');
 const colorContainer = document.getElementById('colorcontainer');
 const colorpicker = document.getElementById('colorpicker');
-
-
 const clear = document.getElementById('clear');
 const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
 var slider = document.getElementById('slider');
 var output = document.getElementById('dimension');
 
+
+const fill = document.getElementById('fill');
+const lines = document.getElementById('lines');
+
+const rotateLeft = document.getElementById('rotateLeft');
+const rotateRight = document.getElementById('rotateRight');
+const download = document.getElementById('download');
+
+
 // Event Listeners
 clear.addEventListener("click", resetGrid);
 
 let rainbowOn = false;
-rainbow.addEventListener("click", rainbowMode );
+rainbow.addEventListener("click", rainbowMode);
 
 let eraseOn = false;
 eraser.addEventListener("click", erase);
 
+let linesOn = true;
+lines.addEventListener("click", toggleLines);
+
 colorpicker.oninput = (e) => setColor(e.target.value);
+
 
 
 // Check for mousedown
@@ -45,7 +56,7 @@ function initAll(){
     setGrid(size);
 }
 
-
+// Set grid function
 function setGrid(size){
 
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -55,12 +66,15 @@ function setGrid(size){
 
         let gridElement = document.createElement('div')
         gridElement.classList.add('grid-element');
+        gridElement.setAttribute('id','grid-element');
+
         gridElement.addEventListener('mouseover', changeColor);
         gridElement.addEventListener('mousedown', changeColor);
         grid.appendChild(gridElement);
     }
 }
     
+// Paint actual grid 
 function changeColor(e){
 
     if (e.type === 'mouseover' && !mouseDown) return;
@@ -75,11 +89,9 @@ function changeColor(e){
 
         e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
     }
-
-    
 }
 
-// 
+// Reset grid
 function resetGrid(){
     grid.innerHTML = '';
     setGrid(size);
@@ -137,16 +149,32 @@ function setColor(e){
     color = e;
 }
 
+// Toggle lines function
+function toggleLines(){
+    
+    linesOn = !linesOn
+    var gridLines = document.querySelectorAll('.grid-element');
+
+    if (!linesOn){
+        gridLines.forEach(gridLines => {
+            gridLines.style.border = "none";
+        });
+    }
+    else{
+        gridLines.forEach(gridLines => {
+            gridLines.style.border = "1px black solid";
+        });
+    }
+
+
+}
 
 initAll();
 
 /*
 TODO:
-- Add icon for website url
-- Let user pick color from color button
-    - Color wheel with rgb
-- Fix positioning of everything
-    - center it
+- Add fill button
+- Add download button
 
 - Make tablet and mobile compatible 
 

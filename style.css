@@ -11,15 +11,16 @@
     display: grid;
     width: 560px;
     height: 560px;
-    padding-left: 200px;
-    padding-top: 20px;
+
+    margin-left: 100px;
+
+    border: 8px black solid;
+    border-radius: 9px;
 }
 
 .container{
     display: flex;
     padding-left: 100px;
-
-
 }
 
 .menu{
@@ -27,8 +28,21 @@
     flex-direction: column;
     gap: 40px;
     padding-top: 20px;
-    margin-left: 200px;
+    margin-left: 90px;
+
+
 }
+
+.leftMenu{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 50px;
+    margin-left: 100px;
+
+}
+
+
 
 
 .colorpicker{
@@ -37,9 +51,13 @@
 
 .rainbow,
 .eraser,
-
 .clear,
-.size {
+.size,
+.fill,
+.download,
+.lines,
+.rotateLeft,
+.rotateRight {
     font-size: 30px;
     font-weight: bolder;
     font-family: cursive;
@@ -53,7 +71,12 @@
 
 .rainbow:hover,
 .eraser:hover,
-.clear:hover {
+.clear:hover,
+.fill:hover,
+.download:hover,
+.lines:hover,
+.rotateLeft:hover, 
+.rotateRight:hover {
     transform: scale(1.05);
     background-color: rgb(229, 226, 222);
 }
@@ -68,9 +91,13 @@
     border: 1px black solid; 
 }
 
+.grid-element.active {
+    border: none;
+}
+
 .footer {
-    padding: 10px;
-   
+    padding-top: 18px;
+    
     font-family: cursive;
     font-weight: bolder;
     
