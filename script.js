@@ -69,7 +69,9 @@ function setGrid(size){
 
         let gridElement = document.createElement('div')
         gridElement.classList.add('grid-element');
-        gridElement.setAttribute('id','grid-element');
+
+        // Set the gridElement ID to row and column coordinate 
+        gridElement.setAttribute('id',`${i}`);
 
         gridElement.addEventListener('mouseover', changeColor);
         gridElement.addEventListener('mousedown', changeColor);
@@ -184,6 +186,18 @@ function floodFill(){
         fill.classList.remove('active');
         body.classList.remove('active');
     }
+
+    var prevColor = null;
+    var newColor = null;
+
+
+    document.getElementById('10').style.backgroundColor = "green";
+}
+
+//            selected color        
+function fillBox(prevColor, newColor){
+
+    if (prevColor == newColor) return;
 
 }
 
