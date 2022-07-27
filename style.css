@@ -55,9 +55,7 @@
 .size,
 .fill,
 .download,
-.lines,
-.rotateLeft,
-.rotateRight {
+.lines {
     font-size: 30px;
     font-weight: bolder;
     font-family: cursive;
@@ -74,16 +72,15 @@
 .clear:hover,
 .fill:hover,
 .download:hover,
-.lines:hover,
-.rotateLeft:hover, 
-.rotateRight:hover {
+.lines:hover {
     transform: scale(1.05);
     background-color: rgb(229, 226, 222);
 }
 
 
 .eraser.active,
-.rainbow.active {
+.rainbow.active,
+.fill.active {
     background-color: rgb(229, 226, 222);
 }
 
@@ -139,6 +136,9 @@
     border-radius: 2px;
 }
 
+.slider::-webkit-slider-thumb:hover{
+    transform: scale(1.1);
+}
 
 .colorpicker:hover{
     transform: scale(1.1);
@@ -168,4 +168,12 @@
     border-radius: 50px;
     background-color: white;
 }
+
+
+
+body.active{
+    
+    cursor: url('./imgs/fill.png'), auto;
+}
+
 

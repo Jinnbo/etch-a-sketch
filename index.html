@@ -8,7 +8,7 @@
     <link rel="icon" href="./imgs/icon.png">
     <title>Etch-A-Sketch</title>
 </head>
-<body class="body">
+<body class="body" id="body">
 
     <div class="title">ETCH-A-SKETCH</div>
 
@@ -23,8 +23,7 @@
             <button class="rainbow" id="rainbow">RAINBOW</button>
             <!--<button class="fill" id="fill">FILL</button> -->
             <button class="eraser" id="eraser">ERASER</button>
-            <button class="clear" id="clear">CLEAR</button>
-
+            
             <div class="slidercontainer">
                 <div class="size">SIZE: <span id="dimension"></span></div>
                 <input type="range" min="16" max="64" value="16" class="slider" id="slider">
@@ -34,13 +33,12 @@
         
         <div class="grid" id="grid"></div>
         
-
+        
         <div class="leftMenu">
             
+            <button class="clear" id="clear">CLEAR</button>
             <button class="fill" id="fill">FILL</button>
             <button class="lines" id="lines">LINES</button>
-            <button class="rotateLeft" id="rotateLeft">ROTATE-LEFT</button>
-            <button class="rotateRight" id="rotateRight">ROTATE-RIGHT</button>
             <button class="download" id="download">DOWNLOAD</button>
             
         </div>

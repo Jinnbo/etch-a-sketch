@@ -9,6 +9,7 @@ let color = INITIAL_COLOR;
 let mode = INITIAL_MODE;
 
 // Variables
+const body = document.getElementById('body');
 const grid = document.getElementById('grid');
 const colorActive = document.getElementById('color');
 const colorContainer = document.getElementById('colorcontainer');
@@ -42,6 +43,8 @@ lines.addEventListener("click", toggleLines);
 
 colorpicker.oninput = (e) => setColor(e.target.value);
 
+let fillOn = false;
+fill.addEventListener("click",floodFill);
 
 
 // Check for mousedown
@@ -165,7 +168,22 @@ function toggleLines(){
             gridLines.style.border = "1px black solid";
         });
     }
+}
 
+// Fill function
+
+function floodFill(){
+
+    fillOn = !fillOn;
+
+    if (fillOn){
+        fill.classList.add('active');
+        body.classList.add('active');
+    }   
+    else{
+        fill.classList.remove('active');
+        body.classList.remove('active');
+    }
 
 }
 
