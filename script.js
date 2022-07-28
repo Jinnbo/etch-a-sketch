@@ -28,6 +28,12 @@ const rotateLeft = document.getElementById('rotateLeft');
 const rotateRight = document.getElementById('rotateRight');
 const download = document.getElementById('download');
 
+// Fill Function variables
+var x_coord = null;
+var y_coord = null;
+var prevColor = null;
+var newColor = null;
+
 
 // Event Listeners
 clear.addEventListener("click", resetGrid);
@@ -44,7 +50,7 @@ lines.addEventListener("click", toggleLines);
 colorpicker.oninput = (e) => setColor(e.target.value);
 
 let fillOn = false;
-fill.addEventListener("click",floodFill);
+fill.addEventListener("click",fillBtn);
 
 
 // Check for mousedown
@@ -65,25 +71,56 @@ function setGrid(size){
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     
-    for (let i = 0; i < size*size; i++) {
+    for (let i = 0; i < size; i++) {
 
-        let gridElement = document.createElement('div')
-        gridElement.classList.add('grid-element');
+        for (let j = 0;j < size; j++){
+            let gridElement = document.createElement('div')
+            gridElement.classList.add('grid-element');
+            
+            // Set the gridElement ID to row and column coordinate 
+            gridElement.setAttribute('id',`${i},${j}`);
 
-        // Set the gridElement ID to row and column coordinate 
-        gridElement.setAttribute('id',`${i}`);
+            gridElement.addEventListener('mouseover', changeColor);
+            gridElement.addEventListener('mousedown', changeColor);
+            grid.appendChild(gridElement);
+        }
 
-        gridElement.addEventListener('mouseover', changeColor);
-        gridElement.addEventListener('mousedown', changeColor);
-        grid.appendChild(gridElement);
+    }
+
+    for (let i = 0; i < size; i++) {
+
+        for (let j = 0;j < size; j++){
+            document.getElementById(`${i},${j}`).onclick = clickid;
+        }
+    }
+}   
+
+function clickid(){
+    if (fillOn){
+
+        var xyCoord = this.id.split(",");
+
+        x_coord = xyCoord[0];
+        y_coord = xyCoord[1];
+        
+        newColor = color;
+        prevColor = "white";
+        
+        floodFill(x_coord, y_coord, newColor,prevColor);
+
     }
 }
+
+
+
     
 // Paint actual grid 
 function changeColor(e){
 
     if (e.type === 'mouseover' && !mouseDown) return;
    
+    if (fillOn) return;
+
     if (mode == 'color'){
         e.target.style.backgroundColor = color;
     }
@@ -174,7 +211,7 @@ function toggleLines(){
 
 // Fill function
 
-function floodFill(){
+function fillBtn(){
 
     fillOn = !fillOn;
 
@@ -187,17 +224,29 @@ function floodFill(){
         body.classList.remove('active');
     }
 
-    var prevColor = null;
-    var newColor = null;
-
-
-    document.getElementById('10').style.backgroundColor = "green";
 }
 
-//            selected color        
-function fillBox(prevColor, newColor){
+// Flood fill                       curcolor      white
+function floodFill(x_coord, y_coord, newColor, prevColor){
 
-    if (prevColor == newColor) return;
+    //console.log(x_coord);
+    //console.log(y_coord);
+
+    if (x_coord > (size-1) || y_coord > (size-1) || x_coord < 0 || y_coord < 0) return;
+
+    if (document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor == newColor) return;
+
+    
+
+
+    document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor = newColor;
+
+
+
+    floodFill(parseInt(x_coord)-1,y_coord,newColor,prevColor);
+    floodFill(parseInt(x_coord)+1,y_coord,newColor,prevColor);
+    floodFill(x_coord, parseInt(y_coord)+1,newColor,prevColor);
+    floodFill(x_coord, parseInt(y_coord)-1,newColor,prevColor);
 
 }
 
