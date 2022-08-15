@@ -91,6 +91,7 @@ function setGrid(size){
 
         for (let j = 0;j < size; j++){
             document.getElementById(`${i},${j}`).onclick = clickid;
+            document.getElementById(`${i},${j}`).style.backgroundColor = "white";
         }
     }
 }   
@@ -232,15 +233,15 @@ function floodFill(x_coord, y_coord, newColor, prevColor){
     //console.log(x_coord);
     //console.log(y_coord);
 
+    // Check if coords are out of bound
     if (x_coord > (size-1) || y_coord > (size-1) || x_coord < 0 || y_coord < 0) return;
-
-    if (document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor == newColor) return;
-
     
+    //console.log(document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor);
+
+    if (document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor != "white") return;
 
 
     document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor = newColor;
-
 
 
     floodFill(parseInt(x_coord)-1,y_coord,newColor,prevColor);
