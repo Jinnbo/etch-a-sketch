@@ -12,45 +12,39 @@
 
     <div class="title">ETCH-A-SKETCH</div>
 
+    <!--Main Container-->
     <div class="container">
-
+        
+        <!--Left Menu-->
         <div class="menu"> 
-            
             <div class="colorcontainer" id="colorcontainer">
                     <input type="color" id="colorpicker" class="colorpicker" value="#000000">
             </div>
-
             <button class="rainbow" id="rainbow">RAINBOW</button>
-            <!--<button class="fill" id="fill">FILL</button> -->
             <button class="eraser" id="eraser">ERASER</button>
-            
             <div class="slidercontainer">
                 <div class="size">SIZE: <span id="dimension"></span></div>
                 <input type="range" min="16" max="64" value="16" class="slider" id="slider">
             </div>
-
         </div>
         
+        <!-- Grid-->
         <div class="grid" id="grid"></div>
         
-        
-        <div class="leftMenu">
-            
+        <!--Right Menu-->
+        <div class="rightMenu">
             <button class="clear" id="clear">CLEAR</button>
             <button class="fill" id="fill">FILL</button>
             <button class="lines" id="lines">LINES</button>
-            <button class="download" id="download">DOWNLOAD</button>
-            
         </div>
-
     </div>
 
+    <!--Footer-->
     <div class="footer">
         Made by Jimmy Hui &nbsp
         <a href="https://github.com/Jinnbo/etch-a-sketch" target="_blank">
             <img src="./imgs/github.png" class="logo">
         </a>       
-    
     </div>
 
     <script src="./script.js"></script>

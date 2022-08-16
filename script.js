@@ -19,13 +19,8 @@ const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
 var slider = document.getElementById('slider');
 var output = document.getElementById('dimension');
-
-
 const fill = document.getElementById('fill');
 const lines = document.getElementById('lines');
-
-const rotateLeft = document.getElementById('rotateLeft');
-const rotateRight = document.getElementById('rotateRight');
 const download = document.getElementById('download');
 
 // Fill Function variables
@@ -33,7 +28,6 @@ var x_coord = null;
 var y_coord = null;
 var prevColor = null;
 var newColor = null;
-
 
 // Event Listeners
 clear.addEventListener("click", resetGrid);
@@ -88,7 +82,7 @@ function setGrid(size){
     }
 
     for (let i = 0; i < size; i++) {
-
+        // Add clickid and "white" to every grid
         for (let j = 0;j < size; j++){
             document.getElementById(`${i},${j}`).onclick = clickid;
             document.getElementById(`${i},${j}`).style.backgroundColor = "white";
@@ -96,6 +90,7 @@ function setGrid(size){
     }
 }   
 
+// Flood fill helper function
 function clickid(){
     if (fillOn){
 
@@ -108,14 +103,13 @@ function clickid(){
         prevColor = "white";
         
         floodFill(x_coord, y_coord, newColor,prevColor);
-
     }
 }
 
 
 
     
-// Paint actual grid 
+// Paint grid 
 function changeColor(e){
 
     if (e.type === 'mouseover' && !mouseDown) return;
@@ -230,20 +224,14 @@ function fillBtn(){
 // Flood fill                       curcolor      white
 function floodFill(x_coord, y_coord, newColor, prevColor){
 
-    //console.log(x_coord);
-    //console.log(y_coord);
-
-    // Check if coords are out of bound
+    // Check if coords are out of bound and if background color is not white
     if (x_coord > (size-1) || y_coord > (size-1) || x_coord < 0 || y_coord < 0) return;
-    
-    //console.log(document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor);
-
     if (document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor != "white") return;
 
-
+    // Paint the grid
     document.getElementById(`${x_coord},${y_coord}`).style.backgroundColor = newColor;
 
-
+    // Recursively call floodFill
     floodFill(parseInt(x_coord)-1,y_coord,newColor,prevColor);
     floodFill(parseInt(x_coord)+1,y_coord,newColor,prevColor);
     floodFill(x_coord, parseInt(y_coord)+1,newColor,prevColor);
@@ -253,11 +241,3 @@ function floodFill(x_coord, y_coord, newColor, prevColor){
 
 initAll();
 
-/*
-TODO:
-- Add fill button
-- Add download button
-
-- Make tablet and mobile compatible 
-
-*/
